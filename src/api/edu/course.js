@@ -24,11 +24,30 @@ export default{
     })
   },
   // 更新课程信息
-  updateCourseInfoById(courseInfoVo) {
+  updateCourseInfo(courseInfoVo) {
     return request({
       url: `/eduservice/course/updateCourse`,
       method: 'post',
       data: courseInfoVo
+    })
+  },
+  getPublishCourseInfo(courseId) {
+    return request({
+      url: `/eduservice/course/getPublishCourseInfo/${courseId}`,
+      method: 'get'
+    })
+  },
+  publishCourse(courseId) {
+    return request({
+      url: `/eduservice/course/publishCourse/${courseId}`,
+      method: 'post'
+    })
+  },
+  getCourseListPage(current, size, courseQueryVo) {
+    return request({
+      url: `/eduservice/course/pageCourseCondition/${current}/${size}`,
+      method: 'post',
+      data: courseQueryVo
     })
   }
 }

@@ -202,8 +202,8 @@ export default ({
           this.subjectOneList = response.data.list
         })
     },
-    // 保存课程并下一步
-    saveOrUpdate() {
+    // 添加课程
+    addCourse() {
       course.addCourseInfo(this.courseInfo)
         .then(response => {
           // 成功提示
@@ -215,6 +215,27 @@ export default ({
           // 跳转到下一步
           this.$router.push({ 'path': '/course/chapter/' + response.data.courseId })
         })
+    },
+    updateCourse() {
+      course.updateCourseInfo(this.courseInfo)
+        .then(response => {
+          // 成功提示
+          this.$message({
+            type: 'success',
+            message: '更新课程成功'
+          })
+
+          // 跳转到下一步
+          this.$router.push({ 'path': '/course/chapter/' + this.courseId })
+        })
+    },
+    // 保存课程并下一步
+    saveOrUpdate() {
+      if (!this.courseInfo.id) {
+        this.addCourse()
+      } else {
+        this.updateCourse()
+      }
     },
     getTeacherList() {
       course.getAllTeacher()
