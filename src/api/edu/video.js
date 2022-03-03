@@ -29,5 +29,11 @@ export default{
       url: `/eduservice/video/${videoId}`,
       method: 'delete'
     })
+  },
+  deleteAliyunvod(videoId) {
+    return request({
+      url: `/vodservice/video/deleteAliyunVideoById/${videoId}`,
+      method: 'delete'
+    })
   }
 }

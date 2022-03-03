@@ -109,7 +109,22 @@ export default {
   },
   methods: {
     removeDataById(courseId) {
+      this.$confirm('此操作将永久删除课程, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        course.deleteCourse(courseId)
+          .then(response => {
+            this.$message({
+              type: 'success',
+              message: '删除课程成功!'
+            })
 
+            // 返回课程列表
+            this.getCourseList()
+          })
+      })
     },
     getCourseList(page = 1) {
       this.page = page
