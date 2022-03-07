@@ -221,6 +221,9 @@ export default {
       this.video.videoSourceId = ''
       this.video.chapterId = chapterId
       this.video.courseId = this.courseId
+
+      // 把文件列表清空
+      this.fileList = []
     },
     saveOrUpdateVideo() {
       if (!this.video.id) {
